@@ -14,8 +14,55 @@
         2. the input can have invalid non-numerical characters like `5 + abc`, you're supposed to throw error for such inputs
 
   Once you've implemented the logic, test your code by running
+
+  https://leetcode.com/problems/basic-calculator-iii/
 */
 
-class Calculator {}
+class Calculator {
+  result;
+
+  endMarker = "#";
+  arithmeticOps = ["+", "-", "*", "/"];
+  opsAndIdentifiers = ["+", "-", "*", "/", ")", this.endMarker];
+
+  constructor() {
+    this.result = 0;
+  }
+
+  add(num) {
+    this.result += num;
+  }
+
+  subtract(num) {
+    this.result -= num;
+  }
+
+  multiply(num) {
+    this.result *= num;
+  }
+
+  divide(num) {
+    if (num !== 0) {
+      this.result /= num;
+    } else {
+      throw new Error();
+    }
+  }
+
+  clear() {
+    this.result = 0;
+  }
+
+  getResult() {
+    return this.result;
+  }
+
+  calculate(expression) {
+    this.currentResult = eval(expression);
+    if (!Number.isFinite(this.currentResult)) {
+      throw new Error(`Infinite value detected`);
+    }
+  }
+}
 
 module.exports = Calculator;

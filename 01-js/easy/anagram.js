@@ -5,7 +5,27 @@
 */
 
 function isAnagram(str1, str2) {
+  if (str1.length != str2.length) {
+    return false;
+  }
 
+  let hashMap = new Map();
+
+  for (let i = 0; i < str1.length; i++) {
+    if (hashMap.has(str1[i])) {
+      hashMap.set(str1[i], hashMap.get(str1[i]) + 1);
+    } else {
+      hashMap.set(str1[i], 1);
+    }
+  }
+
+  for (let i = 0; i < str2.length; i++) {
+    if (hashMap.has(str2[i])) {
+      hashMap.set(str2[i], hashMap.get(str2[i]) - 1);
+    } else {
+      return false;
+    }
+  }
 }
 
 module.exports = isAnagram;
